@@ -1,0 +1,78 @@
+ffffffffffffffffffffffffffffffff be3b750d84c909a764984acc767a103e ffffffffffffffffffffffffffffffff 114188 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/Bbeat2AppDelegate.o
+00000000000000000000000000000000 dcaf1ca392e0ba3624c25f992845a283 ffffffffffffffffffffffffffffffff 313 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/blinkx Beat.xcent
+ffffffffffffffffffffffffffffffff e13b521dfbf008e8de2f6d48fad18bb9 ffffffffffffffffffffffffffffffff 102 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app.dSYM
+ffffffffffffffffffffffffffffffff 76c6f914969726f75cd655679c899b5e ffffffffffffffffffffffffffffffff 1462 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app
+ffffffffffffffffffffffffffffffff 6a12104c59da365ee580fa4c2a73c4f1 ffffffffffffffffffffffffffffffff 86416 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/blinkx Beat
+d81072cb28f1786a6751c328f3b51699 7901081516c312024f9d873285209a2c ffffffffffffffffffffffffffffffff 24416 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/videoIcon.o
+d81072cb28f139106751c328f3b51b53 851a1f2f9c631995d5f65e42f098d05b ffffffffffffffffffffffffffffffff 9340 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/FlipSideView.o
+d81072cb28e82b396751c328f3b5a49f 99b7c61b5dfc27673232e8135db841a9 ffffffffffffffffffffffffffffffff 21876 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/format.o
+d81072cb298633a16751c328f3b5e546 de4a5f1c9f655c3076a443d82cea9bb5 ffffffffffffffffffffffffffffffff 57124 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/Bbeat2ViewController.o
+d81072cb2972d1566751c328f3b5d5e7 09d984dd8ef7a59ca5a5dfde55699cdb ffffffffffffffffffffffffffffffff 17160 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/MyImageView.o
+d81072cb296a6e276751c328f3b5db7a 0950cdd9ea22db4ed6d796108d862ad0 ffffffffffffffffffffffffffffffff 22640 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/MyOverlayView.o
+d81072cb61e6723c6751c328f3b50684 6cccb3f9bc873c3bc96279361aef61a2 ffffffffffffffffffffffffffffffff 18656 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/MediaObject.o
+d81072cb29e00c7b6751c328f3b5dd7b 80fd6174a4393547659692e57bc00611 ffffffffffffffffffffffffffffffff 21244 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/XMLReader.o
+d81072cb6189b49a6751c328f3b51b13 42c9af4e8ff118a2ecd6dbdf3064bbe6 ffffffffffffffffffffffffffffffff 6440 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/Objects-normal/armv6/main.o
+00000000000000000000000000000000 698c168bca26924a9f6def8fbe940630 ffffffffffffffffffffffffffffffff 7182 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/embedded.mobileprovision
+00000000006fc6ac0000000000001deb d81072cb296d81e16751c328f3b5dc0b ffffffffffffffffffffffffffffffff 7200160 /var/folders/8F/8FEKcZb6FZSiY3nn3OjnkE+++TM/-Caches-/com.apple.Xcode.502/SharedPrecompiledHeaders/bbeat2_Prefix-batosvvmynkxrdckoyicztmowxqs/bbeat2_Prefix.pch.gch
+00000000000000000000000000000000 3b875e7ca7cce26447776a5deae94ebb ffffffffffffffffffffffffffffffff 4550 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Hback.png
+00000000000000000000000000000000 d32e2acf5495263a73b91f763cc6c87b ffffffffffffffffffffffffffffffff 1328 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Hprev.png
+00000000000000000000000000000000 c059d9d8d6e3bd85996036b7aa348d02 ffffffffffffffffffffffffffffffff 554 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Hpause.png
+00000000000000000000000000000000 96a7da0c4d77ab9652a4c690783c213d ffffffffffffffffffffffffffffffff 2196 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/HstarOff.png
+00000000000000000000000000000000 f3173d9c4c0b211527dfd6d27645c2a7 ffffffffffffffffffffffffffffffff 1089 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Hplay.png
+00000000000000000000000000000000 6290ed5127e80dff2e2a87c794ab3b27 ffffffffffffffffffffffffffffffff 1280 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Hnext.png
+00000000000000000000000000000000 526f427972c779d8e1cef8d986473094 ffffffffffffffffffffffffffffffff 2495 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/HstarOn.png
+00000000000000000000000000000000 b1f60ca9ee4bbfe6b210ee7daf2a9158 ffffffffffffffffffffffffffffffff 114683 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Default.png
+00000000000000000000000000000000 f2c57279993de25169d067d9a40fed4b ffffffffffffffffffffffffffffffff 509 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/babyStarWhite.png
+00000000000000000000000000000000 1888fddb6c4bf56f9aee7949168c30a0 ffffffffffffffffffffffffffffffff 751 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/babyStar.png
+00000000000000000000000000000000 9a076c6422bf6476080e21f92702c3bf ffffffffffffffffffffffffffffffff 101098 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/gridBG.png
+00000000000000000000000000000000 b04ceabf9c5874a2d5fc4ef63d3fe686 ffffffffffffffffffffffffffffffff 1447 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/star_over.png
+00000000000000000000000000000000 e2799ff84a34488bf412c49a8efe9c99 ffffffffffffffffffffffffffffffff 6907 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/icon4.png
+00000000000000000000000000000000 8151c09ec04c9bb4336569872a28de58 ffffffffffffffffffffffffffffffff 2076 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/star_on76.png
+00000000000000000000000000000000 11aa8431c1125e16b51d8ec783e1a168 ffffffffffffffffffffffffffffffff 294 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/star_off76.png
+00000000000000000000000000000000 a1d839e512d863f1cd4248d5d75e5afe ffffffffffffffffffffffffffffffff 729 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/star1_on.png
+00000000000000000000000000000000 3b939057bae327c7b7fa7120c997a12a ffffffffffffffffffffffffffffffff 966 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/star1.png
+00000000000000000000000000000000 c4e41735fd49ed0d65511a1863e6a0ff ffffffffffffffffffffffffffffffff 1750 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/BBBG.png
+00000000000000000000000000000000 acf47dc7f18634049a51962175db7044 ffffffffffffffffffffffffffffffff 60193 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Default2.png
+ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 26744 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Blogo2.png
+ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 56258 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Blogo.png
+00000000000000000000000000000000 15248d0460a623519ff2e3f1e69075df ffffffffffffffffffffffffffffffff 16806 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Icon3.png
+00000000000000000000000000000000 fc35ca96181d00a207cd6653eb513e50 ffffffffffffffffffffffffffffffff 3024 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Icon2.png
+00000000000000000000000000000000 7695386d5810ce48a6b85165876c8b24 ffffffffffffffffffffffffffffffff 102 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Settings.bundle
+00000000000000000000000000000000 3c41a33888ba86f2728efc4a5d1f9e3c ffffffffffffffffffffffffffffffff 1280 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/stop_on.png
+00000000000000000000000000000000 540d2a00f4101fa4ee61f3e5422695c0 ffffffffffffffffffffffffffffffff 2529 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/next_on.png
+00000000000000000000000000000000 f8881fc28481fefc26505f706c932f67 ffffffffffffffffffffffffffffffff 2544 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/next_off.png
+00000000000000000000000000000000 eb4f7804a5c3948a797f2cc88b386292 ffffffffffffffffffffffffffffffff 14637 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/stop_off.png
+00000000000000000000000000000000 2882b4a4c95324b18e77d176c3bdd6b4 ffffffffffffffffffffffffffffffff 2534 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/prev_on.png
+00000000000000000000000000000000 e639c61f94d58da041db9af63c5a8801 ffffffffffffffffffffffffffffffff 2504 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/prev_off.png
+000000004995c27c00000000000009ff 5efef75977415867b893381b0aca696f ffffffffffffffffffffffffffffffff 682 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Root.plist
+0000000049b07a05000000000000cc6c d10a5eac7c9be08e854d16b29179ed33 ffffffffffffffffffffffffffffffff 13696 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/MainWindow.nib
+00000000000000000000000000000000 0a80c58336342b01b0d2b3e84c07eaa0 ffffffffffffffffffffffffffffffff 22685 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/B.png
+00000000000000000000000000000000 1d7fd5e7e91993996841da7be01f7828 ffffffffffffffffffffffffffffffff 485 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/ResourceRules.plist
+00000000000000000000000000000000 92cc17e7f674c054d6cccf7deacd94a7 ffffffffffffffffffffffffffffffff 8 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/PkgInfo
+00000000000000000000000000000000 92cc17e7f674c054d6cccf7deacd94a7 ffffffffffffffffffffffffffffffff 646 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Info.plist
+00000000000000000000000000000000 f9306d5e55094bb23788b578747d2e37 ffffffffffffffffffffffffffffffff 6907 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/icon.png
+00000000000000000000000000000000 cffabcb1b42b68a45709fdcdf03055a4 ffffffffffffffffffffffffffffffff 16806 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/blinkx Beat.app/Icon.png
+00000000000000000000000000000000 f9f14d474c710eda95d6547247275cc9 ffffffffffffffffffffffffffffffff 313 /Users/Mac/Documents/blinkx-source/bbeat2/build/bbeat2.build/Release-iphoneos/bbeat2.build/bbeat2.xcent
+00000000000000000000000000000000 e13120ac2cadfde81f0e6f29a32071ce ffffffffffffffffffffffffffffffff 102 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app.dSYM
+35b0915b9d30801474970dc953ac9c09 52bb05bf5e2b174088abf9f19c297c72 ffffffffffffffffffffffffffffffff 816 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app
+00000000000000000000000000000000 954fbfd11853e577226a96da7b2c4475 ffffffffffffffffffffffffffffffff 7182 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/embedded.mobileprovision
+21d3bcb810580ac4fa4ae575ef8e4ebe 08b1f396ebf3e0fcb27d393bb28f835a ffffffffffffffffffffffffffffffff 76480 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/bbeat2
+00000000000000000000000000000000 1fc4cc8b1a73ce7e71d58b6dcec51fa3 ffffffffffffffffffffffffffffffff 16806 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Icon.png
+00000000000000000000000000000000 cfe523d973edf26234705ff1cf12f774 ffffffffffffffffffffffffffffffff 60928 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Default.png
+00000000000000000000000000000000 456074125a8e6c9d1f030ab8b07ad21a ffffffffffffffffffffffffffffffff 3024 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Icon2.png
+00000000000000000000000000000000 73122d8db0814af4deeb2c9e7e405d62 ffffffffffffffffffffffffffffffff 102 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Settings.bundle
+00000000000000000000000000000000 a1ccdf5a5567a91a1280e17f865fcf85 ffffffffffffffffffffffffffffffff 1280 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/stop_on.png
+00000000000000000000000000000000 0e46ed3dc6032745e55767c2b1197ed7 ffffffffffffffffffffffffffffffff 2529 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/next_on.png
+00000000000000000000000000000000 9293c9983936514b1762acdbcd1cf82c ffffffffffffffffffffffffffffffff 2544 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/next_off.png
+00000000000000000000000000000000 9a7d788839e3527a68ab58bfc7644754 ffffffffffffffffffffffffffffffff 1295 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/stop_off.png
+00000000000000000000000000000000 20d6e3ede33fec84535658bf0186bbdf ffffffffffffffffffffffffffffffff 2534 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/prev_on.png
+00000000000000000000000000000000 18771c7402dd3c51b5995c704b62e6f9 ffffffffffffffffffffffffffffffff 2504 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/prev_off.png
+000000004995c27c00000000000009ff 798f27b7387b3fd93ba86e338e4dc7e2 ffffffffffffffffffffffffffffffff 682 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Root.plist
+00000000499b66a60000000000009ffe f3d6cbc6da11095fc09f739883a3871a ffffffffffffffffffffffffffffffff 10058 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/MainWindow.nib
+00000000000000000000000000000000 9e17b6f659c45edd2be8809f08373ac0 ffffffffffffffffffffffffffffffff 22685 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/B.png
+00000000000000000000000000000000 e445f10034ad296724895ec5c86ff2f7 ffffffffffffffffffffffffffffffff 485 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/ResourceRules.plist
+00000000000000000000000000000000 1d317c6255673b7a46c3a741e0e3c29a ffffffffffffffffffffffffffffffff 8 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/PkgInfo
+00000000000000000000000000000000 1d317c6255673b7a46c3a741e0e3c29a ffffffffffffffffffffffffffffffff 615 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/Info.plist
+00000000000000000000000000000000 d959c0bd911e1629bd6a96ff3ac1f6f0 ffffffffffffffffffffffffffffffff 16806 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/bbIcon.png
+ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 0 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/blinkxbeat_icon.png
+00000000000000000000000000000000 deda18051afca37748af90a8cf8d2905 ffffffffffffffffffffffffffffffff 23857 /Users/Mac/Documents/blinkx-source/bbeat2/build/Release-iphoneos/bbeat2.app/BSideways.png

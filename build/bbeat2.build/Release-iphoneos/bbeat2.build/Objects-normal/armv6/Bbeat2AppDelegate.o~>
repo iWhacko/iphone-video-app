@@ -1,0 +1,43 @@
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:24: warning: initialization makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate getListSize]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:153: warning: return makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate setListSize:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:163: warning: passing argument 1 of 'numberWithInt:' makes integer from pointer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:166: warning: return makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate addToGrid:atPosition:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:214: warning: 'Bbeat2AppDelegate' may not respond to '-getVideoIconByTag:'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:214: warning: (Messages without a matching method signature
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:214: warning: will be assumed to return 'id' and accept
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:214: warning: '...' as arguments.)
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:214: warning: 'return' with no value, in function returning non-void
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:223: warning: passing argument 2 of 'addTarget:action:' from incompatible pointer type
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:224: warning: passing argument 1 of 'setThisTag:' makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate iconClicked:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:254: warning: 'Bbeat2AppDelegate' may not respond to '-starClicked:'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate segmentedButtonBarClicked:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:296: warning: 'Bbeat2AppDelegate' may not respond to '-getVideoIconByTag:'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate getVideoIconByTag:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:416: warning: comparison between pointer and integer
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:416: warning: distinct Objective-C type in return
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate starClicked:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:426: warning: passing argument 1 of 'getVideoIconByTag:' makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate toggleStars:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:449: warning: 'UIView' may not respond to '-unFavMode'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate updatePlaylist]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:550: warning: 'Bbeat2AppDelegate' may not respond to '-deleteAll'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:551: warning: passing argument 1 of 'setListSize:' makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:565: warning: 'UIView' may not respond to '-setThisTag:'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate moreVideosClicked:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:647: warning: passing argument 1 of 'setListSize:' makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate initializePlayLists]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:716: warning: assignment makes pointer from integer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate applicationDidFinishLaunching:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:728: warning: assignment makes integer from pointer without a cast
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate renderGrid:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:787: warning: 'Bbeat2AppDelegate' may not respond to '-updateGridPosition'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: At top level:
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:894: warning: incomplete implementation of class 'Bbeat2AppDelegate'
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:894: warning: method definition for '-download_all_videos' not found
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:894: warning: method definition for '-getPlayList' not found
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m: In function '-[Bbeat2AppDelegate addToGrid:atPosition:]':
+/Users/Mac/Documents/blinkx-source/bbeat2/Classes/Bbeat2AppDelegate.m:248: warning: control reaches end of non-void function
