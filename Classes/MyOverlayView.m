@@ -5,7 +5,7 @@
 @implementation MyOverlayView
 
 BOOL * showingOverlay = YES;
-NSTimer *theTimer;
+
 
 - (void)awakeFromNib
 {
@@ -52,9 +52,10 @@ NSTimer *theTimer;
 	myNewFrame.origin.x=250;
 	[self setFrame:myNewFrame];*/
 	[NSTimer scheduledTimerWithTimeInterval:(0.5) target:self selector:@selector(hideButtons) userInfo:nil repeats:NO];
-	theTimer = nil;
+	
 	[theTimer invalidate];
-	[theTimer release]; 
+	theTimer = nil;
+	//[theTimer release]; 
 	self.userInteractionEnabled = YES;
 	//self.hidden=NO;
 	//[self becomeFirstResponder];
@@ -83,7 +84,7 @@ NSTimer *theTimer;
 		NSLog(@"single tap!");
 		if(showingOverlay){
 			[self fadeOut];
-			[theTimer invalidate];
+			//[theTimer invalidate];
 		}else{
 			[self resetTimer];
 			[self fadeIn];
@@ -96,6 +97,7 @@ NSTimer *theTimer;
 		[theTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:8]];
 	}else{
 		theTimer=[NSTimer scheduledTimerWithTimeInterval:(9) target:self selector:@selector(fadeOut) userInfo:nil repeats:NO];
+		[theTimer retain];
 	}
 }
 

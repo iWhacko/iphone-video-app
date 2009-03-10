@@ -11,6 +11,10 @@
 //NSString *feedURLString = @"http://api.blinkx.com/api3/start?channelid=1001&staging=true&maxresults=80&random=true&timeoutms=30000&printfields=staticpreview,media_location";
 //NSString *feedURLString = @"http://api.blinkx.com/api3/start?text=channel:associatedpress&staging=true&maxresults=80&random=true&timeoutms=30000&printfields=staticpreview,media_location";
 NSString *feedURLString = @"http://api.blinkx.com/api3/start?text=channel:screensaverentertainment&staging=true&random=true&maxresults=%d&timeoutms=30000&printfields=staticpreview,media_location";
+//NSString *feedURLString = @"http://api.blinkx.com/api3/start?text=channel:youporn&safefilter=off&staging=true&random=true&maxresults=%d&timeoutms=30000&printfields=staticpreview,media_location";
+//NSString * feedURLString = @"http://sircambridge.aptanacloud.com/youporn.html?asXML=true&maxresults=%d";
+
+
 NSString *kScalingModeKey	= @"scalingMode";
 NSString *kControlModeKey	= @"controlMode";
 NSString *kBackgroundColorKey	= @"backgroundColor";
@@ -26,21 +30,18 @@ BOOL *shouldAutoPlay = YES;
 NSString *sCellNetwork;
 
 int currentListSize = 20;
-//int foundFavorites = 0;
 
 BOOL isDownloadingVideos=NO;
 BOOL isDownloadingThumbnails=NO;
 BOOL shouldStopDownloading = NO;
 BOOL missingThumbnailsFlag = YES;
 BOOL needsGridUpdate = NO;
-
 BOOL shouldRestoreFavMode = NO;
-
 BOOL scrollingEnabled =NO;
-
-BOOL shouldPlayVideoOnLaunch = YES;
-
+NSString * autoPlayOnLaunch = @"Yes";
+NSString * onlyDownloadFavorites = @"No";
 BOOL isRendering = NO;
+BOOL showingStars = NO;
 
 @implementation Bbeat2AppDelegate
 
@@ -60,70 +61,49 @@ BOOL isRendering = NO;
 //@synthesize segmentedControl;
 
 
+
 -(void)setUserSettingsDefaults
 {
     NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kScalingModeKey];
     if (testValue == nil)
     {
-        // No default movie player settings values have been set, create them here based on our 
-        // settings bundle info.
-        //
-        // The values to be set for movie playback are:
-        //
-        //    - scaling mode (None, Aspect Fill, Aspect Fit, Fill)
-        //    - controller mode (Standard Controls, Volume Only, Hidden)
-        //    - background color (Any UIColor value)
-        //
+
         NSString *pathStr = [[NSBundle mainBundle] bundlePath];
         NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
         NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
         NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:finalPath];
         NSArray *prefSpecifierArray = [settingsDict objectForKey:@"PreferenceSpecifiers"];
+		
+		NSString * autoPlayOnLaunchDefault = @"Yes";
+		NSString * onlyDownloadFavoritesDefault = @"No";
 
-        NSNumber *controlModeDefault;
-        NSNumber *scalingModeDefault;
-        NSNumber *backgroundColorDefault;
         NSDictionary *prefItem;
         for (prefItem in prefSpecifierArray)
         {
             NSString *keyValueStr = [prefItem objectForKey:@"Key"];
 			NSLog(keyValueStr);
             id defaultValue = [prefItem objectForKey:@"DefaultValue"];
-            if ([keyValueStr isEqualToString:kScalingModeKey])
+            if ([keyValueStr isEqualToString:@"autoPlayOnLaunch"])
             {
-                scalingModeDefault = defaultValue;
+                autoPlayOnLaunchDefault = defaultValue;
             }
-            else if ([keyValueStr isEqualToString:kControlModeKey])
+            else if ([keyValueStr isEqualToString:@"onlyDownloadFavorites"])
             {
-                controlModeDefault = defaultValue;
-            }
-            else if ([keyValueStr isEqualToString:kBackgroundColorKey])
-            {
-                backgroundColorDefault = defaultValue;
-            }
-			else if ([keyValueStr isEqualToString:kListSizeKey])
-            {
-                backgroundColorDefault = defaultValue;
+                onlyDownloadFavoritesDefault = defaultValue;
             }
         }
 
         // since no default values have been set, create them here
         NSDictionary *appDefaults =  [NSDictionary dictionaryWithObjectsAndKeys:
-		 scalingModeDefault, kScalingModeKey,
-		 controlModeDefault, kControlModeKey,
-		 backgroundColorDefault, kBackgroundColorKey,
+		 autoPlayOnLaunchDefault, @"autoPlayOnLaunch",
+		 onlyDownloadFavoritesDefault, @"onlyDownloadFavorites",
 		 nil];
-		/*NSDictionary *appDefaults =  [NSDictionary dictionaryWithObjectsAndKeys:
-                                      0, kScalingModeKey,
-                                      0, kControlModeKey,
-                                      0, kBackgroundColorKey,
-                                      nil];*/
+
         [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    scalingMode = [[NSUserDefaults standardUserDefaults] integerForKey:kScalingModeKey];
-    controlMode = [[NSUserDefaults standardUserDefaults] integerForKey:kControlModeKey];
-    backgroundColor = [[NSUserDefaults standardUserDefaults] integerForKey:kBackgroundColorKey];
+    autoPlayOnLaunch = [[NSUserDefaults standardUserDefaults] stringForKey:@"autoPlayOnLaunch"];
+    onlyDownloadFavorites = [[NSUserDefaults standardUserDefaults] stringForKey:@"onlyDownloadFavorites"];
 	
 }
 
@@ -165,6 +145,35 @@ BOOL isRendering = NO;
 	rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:pathToInfoFile];
 	return [[rootObject valueForKey:@"ListSize"] intValue];    
 }
+- (NSMutableArray* ) getArchivedPlayList
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *folder = [paths objectAtIndex:0];
+	NSString *fileName = @"blinkxBeatPlaylist.infoFile";
+	NSString *pathToInfoFile = [folder stringByAppendingPathComponent: fileName];
+	if ([fileManager fileExistsAtPath: pathToInfoFile] == NO)
+	{
+		NSLog(@"no archived playlist found@");
+		return nil;
+	}
+	NSDictionary * rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:pathToInfoFile];
+	//NSLog(@"unarchived playlist! i think!");
+	return [rootObject valueForKey:@"playlist"];    
+}
+- (BOOL) archivePlaylist :(NSMutableArray * )aPlaylist
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *folder = [paths objectAtIndex:0];
+	NSString *fileName = @"blinkxBeatPlaylist.infoFile";
+	NSString *pathToInfoFile = [folder stringByAppendingPathComponent: fileName];
+	NSMutableDictionary * rootObject = [NSMutableDictionary dictionary];
+	[rootObject setValue: aPlaylist forKey:@"playlist"];
+	[NSKeyedArchiver archiveRootObject: rootObject toFile: pathToInfoFile];
+	//rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:pathToInfoFile];
+	NSLog(@"archived playlist! i think!");
+	return YES;    
+}
 -(int)getCurrentListSize{
 	return currentListSize;
 }
@@ -190,8 +199,20 @@ BOOL isRendering = NO;
 	
 	// should check if start.xml exists, if not, downloads it, if it does, parses it, and refreshes start.xml in the background
 	if(![mViewController doesFileExistLocally:@"localFile/start.xml"]){
-		[self saveThisFile:[NSString stringWithFormat: feedURLString,--currentMaxResultInt] withFileName:@"start.xml"];
-	}else{
+		if([self isDataSourceAvailable]){
+			//[self downloadNewPlaylist];
+			NSBundle *bundle = [NSBundle mainBundle];
+			playListPath=[bundle pathForResource:@"start" ofType:@"xml"];
+			NSLog(@"using first-run start.xml");
+		}else{
+			NSLog(@"error!");
+			UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"oops!" message:@"network connection error - you need to be online the first time you run blinkx beat!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok",nil];
+			[alert show];[alert release];
+			return;[pool release];
+			
+		}
+	}
+	
 		NSLog([@"getPlayList" stringByAppendingString:playListPath]);
 		NSError *parseError = nil;
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -199,8 +220,7 @@ BOOL isRendering = NO;
 		[streamingParser parseXMLwithData:[[NSData alloc] initWithContentsOfFile:playListPath] parseError:&parseError start:[self.playlist count] count:currentListSize];
 		[streamingParser release];
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		
-	}
+
 	[pool release];
 	[self performSelectorInBackground:@selector(downloadNewPlaylist) withObject:nil];
 }
@@ -213,10 +233,8 @@ BOOL isRendering = NO;
 	//NSLog(@"adding to grid %i",position);
 	if([self getVideoIconByTag:position]!=nil)return;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *thisThumbFileName = [[[newMediaObject finalPath] lastPathComponent] stringByReplacingOccurrencesOfString:@"mp4" withString:@"jpg"];
-	NSString *thumbnailLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, thisThumbFileName];
+
+	NSString *thumbnailLocalPath = [self getThumbPathForMovie:newMediaObject];
 	videoIcon *thisVideoIcon = [[videoIcon alloc] init];
 	UIImage *thisThumbImage=[[[UIImage alloc] initWithContentsOfFile:thumbnailLocalPath] retain];
 	[thisVideoIcon setBackground:thisThumbImage];
@@ -224,29 +242,47 @@ BOOL isRendering = NO;
 	[thisVideoIcon setThisTag:position];
 	[thisVideoIcon setTag:position];
 	thisVideoIcon.frame = CGRectMake((position % 4) * 79+3,floor(position / 4) * 79+3, 76, 76);
-	if([mViewController shouldRenderGrid]){
-		[thumbGrid addSubview:thisVideoIcon];
-	}else{
-		thisVideoIcon.alpha=0.0;
-		[thumbGrid addSubview:thisVideoIcon];
+	if(![mViewController shouldRenderGrid]){
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
-		if(!favsButton.enabled){
-			//in show favs mode
+	}
+	
+		//thisVideoIcon.alpha=0.0;
+		[thumbGrid addSubview:thisVideoIcon];
+	
+		if(newMediaObject.isFav!=nil){
+			//NSLog(@"found fav when adding to grid %i",position);
+			[thisVideoIcon makeFav];
+		}else{
+			[thisVideoIcon unMakeFav];
+		}
+		if(showingFavs){
+			if(newMediaObject.isFav!=nil){
+				thisVideoIcon.alpha=1.0;
+			}else{
+				thisVideoIcon.alpha=0.0;
+			}
+		}
+		if(showingStars){
 			[thisVideoIcon favMode];
 		}else{
 			[thisVideoIcon unFavMode];
-			// in regular mode
 		}
-		thisVideoIcon.alpha=1.0;
+	
+	if(![mViewController shouldRenderGrid]){
 		[UIView commitAnimations];
 	}
+		
+
+	
+
+	
 	return YES;
 	[pool release];
 	[thumbGrid setContentSize:CGSizeMake(320,460)];
 
 }
-BOOL showingStars = NO;
+
 -(void)iconClicked:(id)sender{
 	// if favorite mode, toggle favorite, else play the video
 	
@@ -299,7 +335,7 @@ BOOL showingStars = NO;
 			MediaObject * thisMovie = [[self playlist] objectAtIndex:thisTag];
 			if(toFavOrToNormal){
 				// go to favorite mode!
-				if(thisMovie.isFav==@"fav"){
+				if(thisMovie.isFav!=nil){
 					view.frame = CGRectMake((foundFavorites % 4) * 79+3,floor(foundFavorites / 4) * 79+3, 76, 76);
 					view.alpha=1.0;
 					foundFavorites++;
@@ -314,101 +350,9 @@ BOOL showingStars = NO;
 			}
 		}
 	}
-	/*
-	for (UIView *view in self.thumbGrid.subviews){
-		if([view isKindOfClass:[videoIcon class]]){
-			int  thisTag = [view tag];
-			MediaObject * thisMovie = [[self playlist] objectAtIndex:thisTag];
-			if(toFavOrToNormal){
-				// go to favorite mode!
-				if(thisMovie.isFav==@"fav"){
-					view.frame = CGRectMake((foundFavorites % 4) * 79+3,floor(foundFavorites / 4) * 79+3, 76, 76);
-					view.alpha=1.0;
-					foundFavorites++;
-				}else{
-					view.frame = CGRectMake((thisTag % 4) * 79+3,floor(thisTag / 4) * 79+3, 76, 76);
-					view.alpha=0.0;
-				}
-			}else{
-				// back to normal mode
-				view.frame = CGRectMake((thisTag % 4) * 79+3,floor(thisTag / 4) * 79+3, 76, 76);
-				view.alpha=1.0;
-			}
-		}
-	}*/
-	[UIView commitAnimations];
-	
-	/*
-	if([sender selectedSegmentIndex]==0){
-		if(showingStars)[self toggleStars:nil];
-		for (UIView *view in self.thumbGrid.subviews) {
-			//NSLog(@"the tag for button: %i", view.tag);
-			if (view.tag<500){
-				int moviePosition = view.tag;
-				if(showingStars){
-					view.alpha=0.7;
-				}else{
-					view.alpha=1.0;
-				}
-				
-				view.frame = CGRectMake((moviePosition % 4) * 79+3,floor(moviePosition / 4) * 79+3, 76, 76);
-			}
-			if(view.tag>1999 && view.tag < 4000){
-				if(showingStars){
-					int thisMovie = (view.tag<2999)?view.tag-2000:view.tag-3000;
-					view.frame = CGRectMake((thisMovie % 4) * 79+50,floor(thisMovie / 4) * 79+5, 20, 20);
-					//view.alpha=1.0;
-					[thumbGrid bringSubviewToFront:view];
-				}
-			}
-			if(view.tag==999 || view.tag==1001 || view.tag==1002)view.hidden=NO;
-		}
-		[thumbGrid setContentSize:CGSizeMake((300), floor([[self playlist] count]/4)*79+180)];
-		
-	}else if([sender selectedSegmentIndex]==1){
-		if(showingStars)[self toggleStars:nil];
-		int foundFavorites = 0;
-		// there are multiple views with tag 0, like the scrollbar
-		BOOL zeroTagFound = NO;
-		for (UIView *view in self.thumbGrid.subviews) {
-			NSLog(@"the tag for button: %i", view.tag);
-			//NSLog(@"the tag star: %i, foundFavs : %i", view.tag,foundFavorites);
-			if (view.tag<500){
 
-				MediaObject * thisMovie = [[self playlist] objectAtIndex:view.tag];
-				if([thisMovie.isFav isEqualToString:@"fav"]){
-					view.alpha=1.0;
-					view.frame = CGRectMake((foundFavorites % 4) * 79+3,floor(foundFavorites / 4) * 79+3, 76, 76);
-					foundFavorites=foundFavorites+1;
-				}else{
-					view.alpha=0.0;
-				}
-			}
-			// if this is a star
-			
-			if(view.tag>1999 && view.tag < 4000){
-				int thisMovie = (view.tag<2999)?view.tag-2000:view.tag-3000;
-				if(view.tag<2999){
-					//star off
-					//view.frame = CGRectMake((thisMovie % 4) * 79+50,floor(thisMovie / 4) * 79+5, 20, 20);
-					view.alpha=0.0;
-				}else if(view.tag>2999){
-					if(showingStars){
-						view.alpha=0.0;
-						//NSLog(@"the tag star: %i, foundFavs : %i", view.tag,foundFavorites);
-						//view.frame = CGRectMake(((foundFavorites-1) % 4) * 79+50,floor((foundFavorites-1) / 4) * 79+5, 20, 20);						
-					}					
-					//star on
-				}
-				//[thumbGrid bringSubviewToFront:view];
-			}
-			if(view.tag==999 || view.tag==1001 || view.tag==1002)view.hidden=YES;
-		}
-		[thumbGrid setContentSize:CGSizeMake((300), floor(foundFavorites/4)*79+180)];
-	}
 	[UIView commitAnimations];
-	[foundFavorites release];
-	*/
+
 	
 }
 -(videoIcon*)getVideoIconByTag:(int*)tag{
@@ -435,15 +379,24 @@ BOOL showingStars = NO;
 		thisMovie.isFav=nil;
 		[thisVideoIcon unMakeFav];
 	}
+	if(showingStars){
+		[thisVideoIcon favMode];
+	}else{
+		[thisVideoIcon unFavMode];
+	}
 	[UIView commitAnimations];
 }
 
 -(IBAction)toggleStars:(id)sender{
+	
+	(showingStars)?[favsButton setStyle:UIBarButtonItemStyleBordered]:[favsButton setStyle:UIBarButtonItemStyleDone];
+	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.3];
 	if(showingStars){
 		playButton.enabled=YES;
 		favText.alpha=0.0;
+		//[favsButton setStyle:UIBarButtonItemStyleBordered];
 		for (UIView *view in self.thumbGrid.subviews) {
 			if([view isKindOfClass:[videoIcon class]]){
 				[view unFavMode];
@@ -452,6 +405,7 @@ BOOL showingStars = NO;
 	}else{
 		playButton.enabled=NO;
 		favText.alpha=1.0;
+		//[favsButton setStyle:UIBarButtonItemStyleDone];
 		for (videoIcon *view in self.thumbGrid.subviews) {
 			if([view isKindOfClass:[videoIcon class]]){
 				[view favMode];
@@ -460,6 +414,8 @@ BOOL showingStars = NO;
 	}
 	showingStars=(showingStars)?NO:YES;
 	[UIView commitAnimations];
+	
+	
 
 }
 -(BOOL)saveThisFile:(NSString *)remotePath withFileName:(NSString *)overrideFileName {
@@ -532,7 +488,7 @@ BOOL showingStars = NO;
 -(IBAction)updateClicked:(id)sender{
 	//NSLog(@"update clicked!");
 	
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Loading new Videos" message:@"We'll keep your starred ones!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue",nil];
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Load new Videos." message:@"We'll keep your starred ones!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue",nil];
 	[alert show];[alert release];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -660,59 +616,54 @@ BOOL showingStars = NO;
 }
 
 -(void)initializePlayLists{
-	//NSLog(@"debug1");
+
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	NSString * documentsDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	if([mViewController doesFileExistLocally:@"localFile/start.xml"]){
-		NSString * localPlayListPath = [documentsDirPath stringByAppendingString:@"/start.xml"];
-		[self getLocalPlayList:localPlayListPath];
-		//NSLog(@"debug2");
+	[self isDataSourceAvailable];
+	
+	// first see if there is an archived playlist
+	if([self getArchivedPlayList]!=nil){
+		NSLog(@"found archived playlist!");
+		self.playlist = [self getArchivedPlayList];
+		//NSLog(@"playlist worked?");
 	}else{
-		if ([self isDataSourceAvailable] == NO){
-			[self alertWithMessage:@"you need to be online the first time you run blinkx beat! quitting"];
-			[super dealloc];
-		}else{
-			[self saveThisFile:[NSString stringWithFormat: feedURLString,--currentMaxResultInt] withFileName:@"start.xml"];
-			NSString * localPlayListPath = [documentsDirPath stringByAppendingString:@"/start.xml"];
-			[self getLocalPlayList:localPlayListPath];
-		}
+		[self getLocalPlayList:nil];
 	}
-	//NSLog(@"debug3");
-	if(!self.foundAtLeastOneVideo){
-		[self saveThisFile:[NSString stringWithFormat: feedURLString,--currentMaxResultInt] withFileName:@"start.xml"];
-		NSString * localPlayListPath = [documentsDirPath stringByAppendingString:@"/start.xml"];
-		[self getLocalPlayList:localPlayListPath];
-		//[self alertWithMessage:@"something went wrong, quitting app.(this should not happen)"];
-		[super dealloc];
+
+	
+	// this is in case start.xml is corrupt and the parser did not product any playlist items
+
+	if([self.playlist count]==0){
+		[self getLocalPlayList:nil];
+	}
+	// if the playlist is still blank, fail.
+	if([self.playlist count]==0){
+		UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"oops!" message:@"network connection error" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok",nil];
+		[alert show];[alert release];
 		return;
+		
 	}
-	//NSLog(@"debug4");
+	
+	if(!isRendering)[self performSelectorInBackground:@selector(renderGrid:) withObject:nil];
+	/*
 	if([self isDataSourceAvailable]){
 		if([sCellNetwork isEqualToString:@"NO"]){
 			//wifi mode
 			NSLog(@"WI FI MODE!");
-			//[self performSelectorInBackground:@selector(download_all_videos:) withObject:nil];
 			if(!isRendering)[self performSelectorInBackground:@selector(renderGrid:) withObject:nil];
 			
 		}else{
 			//celluar mode
 			NSLog(@"3G MODE!");
-			if(!isRendering)[self performSelectorInBackground:@selector(renderGrid:) withObject:nil];
+			
 		}
-	}
-	//[self performSelectorInBackground:@selector(download_all_thumbnails:) withObject:nil];
+	}*/
 
-	//[self performSelectorInBackground:@selector(renderGrid:) withObject:nil];
-	//[NSTimer scheduledTimerWithTimeInterval:(1) target:self selector:@selector(renderGrid:) userInfo:nil repeats:YES];
-	
 	if(shouldAutoPlay){
-		//NSLog(@"debug5");
 		[mViewController initMoviePlayer];
-		if(!shouldPlayVideoOnLaunch){
+		if([autoPlayOnLaunch isEqualToString:@"No"]){
 			[mViewController stopPlaying:nil];
 		}
-		
-		//[NSTimer scheduledTimerWithTimeInterval:(0.1) target:mViewController selector:@selector(initMoviePlayer) userInfo:nil repeats:NO];
 		shouldAutoPlay=YES;
 	}
 	needsGridUpdate=YES;
@@ -743,6 +694,20 @@ BOOL showingStars = NO;
 						 action:@selector(segmentedButtonBarClicked:)
 			   forControlEvents:UIControlEventValueChanged];
 	
+	if(YES){
+		staticy.hidden=NO;
+		NSBundle *bundle = [NSBundle mainBundle];
+		staticy.animationImages =[NSArray arrayWithObjects:
+								  [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"static_01" ofType:@"png"]] retain],
+								  [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"static_02" ofType:@"png"]] retain],
+								  [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"static_03" ofType:@"png"]] retain],nil
+								  ];
+		staticy.animationDuration = 0.3;
+		[staticy startAnimating];
+	}
+	
+
+	
 	
 	
 }
@@ -750,12 +715,12 @@ BOOL showingStars = NO;
 -(NSString*)getThumbPathForMovie:(MediaObject*)thisMovie{
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *thisThumbFileName = [[[thisMovie finalPath] lastPathComponent] stringByReplacingOccurrencesOfString:@"mp4" withString:@"jpg"];
+	NSString *thisThumbFileName = [[[[thisMovie finalPath] lastPathComponent] stringByReplacingOccurrencesOfString:@"mp4" withString:@"jpg"] stringByReplacingOccurrencesOfString:@"3gp" withString:@"jpg"];
 	NSString *thumbnailLocalPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, thisThumbFileName];
 	return thumbnailLocalPath;
 }
 
-BOOL firstRender = YES;
+//BOOL firstRender = YES;
 
 -(void)renderGrid:(NSString *)dummyString{
 	NSLog(@"renderGrid1");
@@ -838,15 +803,15 @@ BOOL firstRender = YES;
 -(void) download_all_videos : (NSString*)dummyString{
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	if(isDownloadingVideos){
-		//NSLog(@"skipping downloading videos");
+		NSLog(@"skipping downloading videos");
 		[pool release];return;
 	}
 	if(![sCellNetwork isEqualToString:@"NO"]){
-		//NSLog(@"3G mode, dont download");
+		NSLog(@"3G mode, dont download");
 		[pool release];return;
 	}
 	if([mViewController shouldRenderGrid]){ 
-		//NSLog(@"skipping downloading videos - grid hidden"); 
+		NSLog(@"skipping downloading videos - grid hidden"); 
 		[pool release];return;
 	}
 	if(isDownloadingThumbnails){
@@ -861,22 +826,25 @@ BOOL firstRender = YES;
 		MediaObject *thisMovie = [[self playlist] objectAtIndex:i];
 		if([mViewController shouldRenderGrid]){ 
 			//NSLog(@"stopping downloading videos - grid hidden"); 
-			NSLog(@"setting isDownloadingVideos=NO");
+			//NSLog(@"setting isDownloadingVideos=NO");
 			isDownloadingVideos=NO;
-			//return;
+			return;
 		}else if(shouldStopDownloading){ 
 			//NSLog(@"stopping downloading videos - grid hidden"); 
-			NSLog(@"setting isDownloadingVideos=NO");
+			//NSLog(@"setting isDownloadingVideos=NO");
 			shouldStopDownloading=NO;
 			isDownloadingVideos=NO;
-			//return;
+			return;
 		}else if(![mViewController doesFileExistLocally:thisMovie.finalPath]){
 			if(![mViewController.av isAnimating])[mViewController.av performSelectorInBackground:@selector(startAnimating) withObject:nil];
 			//refreshButton.hidden=YES;
-			[self saveThisFile:thisMovie.finalPath withFileName:nil];
+			if([onlyDownloadFavorites isEqualToString:@"Yes"]){
+				if(thisMovie.isFav==@"fav")[self saveThisFile:thisMovie.finalPath withFileName:nil];
+			}else{
+				[self saveThisFile:thisMovie.finalPath withFileName:nil];
+			}
+			
 			[mViewController.av stopAnimating];
-			//[refreshButton view].hidden=NO;
-			//[self renderGrid:nil];
 		}
 		
 	}
@@ -885,7 +853,15 @@ BOOL firstRender = YES;
 	[pool release];
 	
 }
+-(void)applicationWillTerminate:(UIApplication *)application{
+	for(int i = 0; i < [[self playlist] count]; i++){
+		MediaObject *thisMovie = [[self playlist] objectAtIndex:i];
+		thisMovie.summary = nil;	
+	}
+	[self archivePlaylist:self.playlist];
+}
 - (void)dealloc {
+	
     [window release];
     [mViewController release];
     [super dealloc];

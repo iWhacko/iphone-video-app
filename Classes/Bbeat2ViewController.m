@@ -8,6 +8,7 @@ static NSUInteger currentClip = 0;
 BOOL currentlyPlaying = NO;
 
 BOOL * isGridView = YES;
+BOOL paused=NO;
 BOOL shouldIncrementMovie = NO;
 Bbeat2AppDelegate * appDelegate;
 
@@ -142,6 +143,7 @@ UIImageView *background;
 	 Movie scaling mode can be one of: MPMovieScalingModeNone, MPMovieScalingModeAspectFit,MPMovieScalingModeAspectFill, MPMovieScalingModeFill.
 	 Movie control mode can be one of: MPMovieControlModeDefault, MPMovieControlModeVolumeOnly,MPMovieControlModeHidden.
 	 */
+	//mMoviePlayer.movieControlMode =MPMovieControlModeDefault;
 	mMoviePlayer.movieControlMode = MPMovieControlModeHidden;
 	mMoviePlayer.scalingMode = MPMovieScalingModeAspectFill;
 	
@@ -177,7 +179,24 @@ UIImageView *background;
 	//flipSideView.hidden=YES;
 	[mMoviePlayer play];
 	flipSideView.hidden=YES;
-	[mOverlayView setFadeTimer];
+	[mOverlayView resetTimer];
+	
+	[videoStar setTag:currentClip];
+	
+	[self syncVideoStar];
+	NSBundle *bundle = [NSBundle mainBundle];
+	//UIImage * Hplay   = [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Hplay" ofType:@"png"]] retain];
+	UIImage * Hpause   = [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Hpause" ofType:@"png"]] retain];
+	paused=NO;
+	[playPauseButton setBackgroundImage:Hpause forState:UIControlStateNormal];
+	
+	UIImage * Hback   = [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Hback" ofType:@"png"]] retain];
+	UIImage * Hprev   = [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Hprev" ofType:@"png"]] retain];
+	UIImage * Hnext   = [[[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"Hnext" ofType:@"png"]] retain];
+
+	[backButton setBackgroundImage:Hback forState:UIControlStateNormal];
+	[prevButton setBackgroundImage:Hprev forState:UIControlStateNormal];
+	[nextButton setBackgroundImage:Hnext forState:UIControlStateNormal];
 	
 	//[self drawSplash];
 	
@@ -224,15 +243,46 @@ UIImageView *background;
 	[self initMoviePlayer];
     //[mMoviePlayer play];
 }
-BOOL paused=NO;
+
 -(IBAction)pausePlay:(id)sender{
+	NSBundle *bundle = [NSBundle mainBundle];
+	NSString *HplayPath = [bundle pathForResource:@"Hplay" ofType:@"png"];
+	NSString *HpausePath = [bundle pathForResource:@"Hpause" ofType:@"png"];
+	UIImage * Hplay   = [[[UIImage alloc] initWithContentsOfFile:HplayPath] retain];
+	UIImage * Hpause   = [[[UIImage alloc] initWithContentsOfFile:HpausePath] retain];
+
 	if(!paused){
 		paused=YES;
 		[mMoviePlayer pause];
+		// todo: draw the 'play' button
+		[playPauseButton setBackgroundImage:Hplay forState:UIControlStateNormal];
 	}else{
 		paused=NO;
 		[mMoviePlayer resume];
+		[playPauseButton setBackgroundImage:Hpause forState:UIControlStateNormal];
+		// todo: draw the 'pause' button
 	}
+	[mOverlayView resetTimer];
+}
+-(void)syncVideoStar{
+	NSBundle *bundle = [NSBundle mainBundle];
+	NSString *videoStarOnPath = [bundle pathForResource:@"HstarOn" ofType:@"png"];
+	NSString *videoStarOffPath = [bundle pathForResource:@"HstarOff" ofType:@"png"];
+	UIImage * videoStarOn   = [[[UIImage alloc] initWithContentsOfFile:videoStarOnPath] retain];
+	UIImage * videoStarOff   = [[[UIImage alloc] initWithContentsOfFile:videoStarOffPath] retain];
+	
+	if([[appDelegate.playlist objectAtIndex:currentClip] isFav]!=nil){
+		[videoStar setBackgroundImage:videoStarOn forState:UIControlStateNormal];
+	}else{
+		[videoStar setBackgroundImage:videoStarOff forState:UIControlStateNormal];
+	}
+}
+
+-(IBAction)videoStarClicked:(id)sender{
+	Bbeat2AppDelegate *appDelegate = (Bbeat2AppDelegate *)[[UIApplication sharedApplication] delegate];
+	[appDelegate starClicked:sender];
+	[self syncVideoStar];
+	[mOverlayView resetTimer];
 }
 
 #pragma mark View Controller Routines
@@ -248,7 +298,7 @@ BOOL paused=NO;
 	int currentListSize = [appDelegate getCurrentListSize];
 	
 	if(appDelegate.showingFavs){
-		//NSLog(@"showing favs! skipping non favs!");
+		NSLog(@"showing favs! skipping non favs!");
 		//int skipCount = 0;
 		for(int i=0; i< currentListSize; i++){
 			if(thisMovie.isFav==nil){
@@ -340,7 +390,7 @@ BOOL paused=NO;
 // Action method for the MyOverlayView button
 -(IBAction)overlayViewButtonPress:(id)sender
 {
-	[mOverlayView fadeIn];
+	//[mOverlayView fadeIn];
     // Handle touches to the MyOverlayView 
     // button here... 
 }

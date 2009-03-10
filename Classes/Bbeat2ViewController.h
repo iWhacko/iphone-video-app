@@ -17,6 +17,12 @@ extern NSString * const OverlayViewTouchNotification;
 	BOOL *isGridView;
 	IBOutlet FlipSideView *flipSideView;
     IBOutlet MyOverlayView *mOverlayView;
+	
+	IBOutlet UIButton *videoStar;
+	IBOutlet UIButton *playPauseButton;
+	IBOutlet UIButton *backButton;
+	IBOutlet UIButton *prevButton;
+	IBOutlet UIButton *nextButton;
 }
 
 -(NSURL *)movieURL;
@@ -26,6 +32,7 @@ extern NSString * const OverlayViewTouchNotification;
 -(IBAction)playMovie:(id)sender;
 -(IBAction)stopPlaying:(id)sender;
 -(IBAction)pausePlay:(id)sender;
+-(IBAction)videoStarClicked:(id)sender;
 -(void)setClipAndPlay:(id)sender;
 -(IBAction)toggleFlip:(id)sender;
 -(BOOL)shouldRenderGrid;

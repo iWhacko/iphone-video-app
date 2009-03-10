@@ -152,13 +152,24 @@ int startPos = 0;
 	 */
     /* kind of a silly way to do this - but works.*/
     /*if ([elementName isEqualToString:@"title"]) {
-        self.currentMediaObject.title = self.contentOfCurrentMediaProperty;
-        
-    } else */
-		
+	 self.currentMediaObject.title = self.contentOfCurrentMediaProperty;
+	 
+	 } else */
+	
 	if ([elementName isEqualToString:@"media_location"]) {
-        self.currentMediaObject.media_location = self.contentOfCurrentMediaProperty;
-		self.currentMediaObject.finalPath = [Format getFinalFLV:self.contentOfCurrentMediaProperty bRtmp:0 bPreview:0];
+		if ([self.contentOfCurrentMediaProperty rangeOfString: @"http"].location != NSNotFound){
+			self.currentMediaObject.finalPath = self.contentOfCurrentMediaProperty;
+			
+		}else{
+			//for blinkx api
+			//self.currentMediaObject.media_location = self.contentOfCurrentMediaProperty;
+			self.currentMediaObject.finalPath = [Format getFinalFLV:self.contentOfCurrentMediaProperty bRtmp:0 bPreview:0];
+		}
+		
+		
+		
+		
+		
 		//NSLog (self.currentMediaObject.finalPath) ;
 		if(shouldStop){
 			[parser abortParsing];
@@ -168,31 +179,31 @@ int startPos = 0;
         
     }
     /*    
-    } else if ([elementName isEqualToString:@"summary"]) {
-        self.currentMediaObject.summary = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"channel"]) {
-        self.currentMediaObject.channel = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"category"]) {
-        self.currentMediaObject.category = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"id"]) {
-        self.currentMediaObject.blinkxID = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"external_player_url"]) {
-        self.currentMediaObject.external_player_url = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"safe_flag"]) {
-        self.currentMediaObject.safe_flag = self.contentOfCurrentMediaProperty;
-        
-    } else if ([elementName isEqualToString:@"staticpreview"]) {
-		//storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        self.currentMediaObject.staticpreview = [self.contentOfCurrentMediaProperty stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        
-    } else if ([elementName isEqualToString:@"num_dpmp4s"]) {
-        self.currentMediaObject.num_dpmp4s = self.contentOfCurrentMediaProperty;
-    }*/
+	 } else if ([elementName isEqualToString:@"summary"]) {
+	 self.currentMediaObject.summary = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"channel"]) {
+	 self.currentMediaObject.channel = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"category"]) {
+	 self.currentMediaObject.category = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"id"]) {
+	 self.currentMediaObject.blinkxID = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"external_player_url"]) {
+	 self.currentMediaObject.external_player_url = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"safe_flag"]) {
+	 self.currentMediaObject.safe_flag = self.contentOfCurrentMediaProperty;
+	 
+	 } else if ([elementName isEqualToString:@"staticpreview"]) {
+	 //storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	 self.currentMediaObject.staticpreview = [self.contentOfCurrentMediaProperty stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	 
+	 } else if ([elementName isEqualToString:@"num_dpmp4s"]) {
+	 self.currentMediaObject.num_dpmp4s = self.contentOfCurrentMediaProperty;
+	 }*/
 	//NSLog (self.contentOfCurrentMediaProperty) ;
 }
 

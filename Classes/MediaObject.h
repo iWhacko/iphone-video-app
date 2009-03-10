@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface MediaObject : NSObject
+@interface MediaObject : NSCoder
 {
 @public NSString *_media_location;
 @public NSString *_title;

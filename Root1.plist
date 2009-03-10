@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Options</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>Yes</string>
+				<string>No</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Yes</string>
+				<string>No</string>
+			</array>
+			<key>Title</key>
+			<string>Auto play on start</string>
+			<key>Key</key>
+			<string>AutoPlayOnLaunch</string>
+			<key>DefaultValue</key>
+			<real>0</real>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>Yes</string>
+				<string>No</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Yes</string>
+				<string>No</string>
+			</array>
+			<key>Title</key>
+			<string>Only Download Favorites</string>
+			<key>Key</key>
+			<string>onlyDownloadFavorites</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>Title</key>
+	<string>blinkxBeat</string>
+</dict>
+</plist>

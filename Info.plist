@@ -11,7 +11,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>&quot;icon4.png&quot;</string>
+	<string>icon.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.blinkx.bbeat</string>
 	<key>UIPrerenderedIcon</key>

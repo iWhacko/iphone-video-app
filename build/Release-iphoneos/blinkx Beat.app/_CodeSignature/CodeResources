@@ -56,10 +56,6 @@
 		<data>
 		KXJ+pUpkNpAHgPiRu6Dndpl5gmA=
 		</data>
-		<key>Icon.png</key>
-		<data>
-		LjQTrsqzN4TB28OXAobHb2PoN0A=
-		</data>
 		<key>Icon2.png</key>
 		<data>
 		VdP/NzxOR10b7/cqnIHWu8v2ODE=
@@ -70,7 +66,7 @@
 		</data>
 		<key>MainWindow.nib</key>
 		<data>
-		Qejqo5EugvUC4NguGfH7cARvXOY=
+		FnSZPGrGvs1ENB4hCan/SnF8kKI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -80,7 +76,15 @@
 		<data>
 		GrVv7sQcXungiXMdwvI5rwZcvO8=
 		</data>
+		<key>Root1.plist</key>
+		<data>
+		VIpI2EhoqD8sRW3oNotoo4nSNFc=
+		</data>
 		<key>Settings.bundle/Root.plist</key>
+		<data>
+		oTa2KS13cR+UArhTHeZ4RpYkXyg=
+		</data>
+		<key>Settings1.bundle/Root.plist</key>
 		<data>
 		syoaQfP6EUmMKPqhAXxxPo8Gyik=
 		</data>
@@ -100,7 +104,7 @@
 		<data>
 		qImvRN4xq6ynGC2mVJsDV+6sGTA=
 		</data>
-		<key>icon4.png</key>
+		<key>icon.png</key>
 		<data>
 		LjQTrsqzN4TB28OXAobHb2PoN0A=
 		</data>
@@ -139,6 +143,22 @@
 		<key>star_over.png</key>
 		<data>
 		7aPmzuQPLE/+aIR+HXGHyoTsmkk=
+		</data>
+		<key>start.xml</key>
+		<data>
+		KE9bWbBD7TeQ2LdmkPcpDbm999w=
+		</data>
+		<key>static_01.png</key>
+		<data>
+		g/MuwY8uAn1pRcmA2jU/CkVBn2c=
+		</data>
+		<key>static_02.png</key>
+		<data>
+		nIu1Fz0Bv7KQdmCIbW778npD0C4=
+		</data>
+		<key>static_03.png</key>
+		<data>
+		8UXLcjFmUt892+jjL5i7ia/5v7Y=
 		</data>
 		<key>stop_off.png</key>
 		<data>

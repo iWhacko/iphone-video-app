@@ -18,6 +18,7 @@
 	IBOutlet UIBarButtonItem * playButton;
 	IBOutlet UISegmentedControl * segmentedControl;
 	IBOutlet UILabel * favText;
+	IBOutlet UIImageView * staticy;
 	
 	NSMutableArray *playlist;
 	NSMutableArray *tempPlaylist;
@@ -29,6 +30,7 @@
 	BOOL _isDataSourceAvailable;
 	BOOL foundAtLeastOneVideo;
 	BOOL WiFiMode;
+	BOOL showingFavs;
 }
 
 -(void)setUserSettingsDefaults;
@@ -44,10 +46,11 @@
 -(IBAction)moreVideosClicked:(id)sender;
 -(IBAction)toggleStars:(id)sender;
 -(void)renderGrid : (NSString*)dummyString;
--(void)download_all_videos;
+-(void)download_all_videos : (NSString*)dummyString;
 -(void)alertWithMessage:(NSString *)message;
 -(void)initializePlayLists;
 -(void)applicationDidFinishLaunching:(UIApplication *)application;
+-(void)applicationWillTerminate:(UIApplication *)application;
 -(void)dealloc;
 
 @property (nonatomic, retain) NSMutableArray *playlist;
